@@ -17,20 +17,3 @@ jobs:
         with:
           name: report
           path: report
-
-name: Upload download 2
-
-on: push
-
-jobs:
-  job3:
-    runs-on: ubuntu-latest
-    needs: job1
-    steps:
-      - uses: actions/checkout@v1
-      - name: find path
-        run: |
-          cd ../../_actions/action
-          ls
-      - name: call yml
-        uses: ./.github/actions/my-action
