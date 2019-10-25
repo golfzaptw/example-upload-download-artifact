@@ -26,9 +26,9 @@ jobs:
           path: report
   danger:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     needs: setUp
     steps:
+      - if: github.event_name == 'pull_request'
       - uses: actions/checkout@v1
       - name: Download txt result for job 1
         uses: actions/download-artifact@v1
