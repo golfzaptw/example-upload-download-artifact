@@ -39,6 +39,6 @@ jobs:
       - name: find path
         run: |
           ls
-          cd ./.github/
+          cd ../.github/
       - name: call yml
         uses: ./.github/actions/my-action
