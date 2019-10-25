@@ -3,13 +3,13 @@ name: Upload download
 on:
   push:
     branches:
-      - master
+      - /*
   pull_request:
     branches:
       - master
 
 jobs:
-  pushOnly:
+  setUp:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
@@ -27,7 +27,7 @@ jobs:
   danger:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
-    needs: pushOnly
+    needs: setUp
     steps:
       - uses: actions/checkout@v1
       - name: Download txt result for job 1
