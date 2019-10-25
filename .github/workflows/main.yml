@@ -21,15 +21,15 @@ jobs:
   danger:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    needs: pushOnly
     steps:
       - uses: actions/checkout@v1
-      - name: Upload txt result for job 1
-        uses: actions/upload-artifact@v1
+      - name: Download txt result for job 1
+        uses: actions/download-artifact@v1
         with:
           name: text
-          path: text.txt
-      - name: Upload folder report for job 1
-        uses: actions/upload-artifact@v1
-        with:
-          name: report
-          path: report
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat text.txt`
+          echo The result is $value
