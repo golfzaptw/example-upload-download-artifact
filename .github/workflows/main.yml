@@ -11,7 +11,6 @@ on:
 jobs:
   setUp:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v1
       - name: Upload txt result for job 1
@@ -26,10 +25,10 @@ jobs:
           path: report
   danger:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     needs: setUp
     steps:
       - uses: actions/checkout@v1
-        if: github.event_name == 'pull_request'
       - name: Download txt result for job 1
         uses: actions/download-artifact@v1
         with:
