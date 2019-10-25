@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: find path
         run: |
-          cd ../../_actions
+          cd ../../_actions/action
           ls
       - name: call yml
         uses: ./.github/actions/my-action
