@@ -3,7 +3,22 @@ name: Upload download
 on: push
 
 jobs:
-  job1:
+  pushOnly:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v1
+      - name: Upload txt result for job 1
+        uses: actions/upload-artifact@v1
+        with:
+          name: text
+          path: text.txt
+      - name: Upload folder report for job 1
+        uses: actions/upload-artifact@v1
+        with:
+          name: report
+          path: report
+  danger:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
