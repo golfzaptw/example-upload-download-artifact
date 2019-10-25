@@ -1,11 +1,16 @@
 name: Upload download
 
-on: push
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   job3:
     runs-on: ubuntu-latest
-    needs: job1
     steps:
       - uses: actions/checkout@v1
       - name: Download txt result for job 1
