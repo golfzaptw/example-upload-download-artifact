@@ -1,12 +1,6 @@
 name: Upload download
 
-on:
-  push:
-    branches:
-      - pr
-  pull_request:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
   setUp:
