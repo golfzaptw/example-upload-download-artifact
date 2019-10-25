@@ -3,7 +3,7 @@ name: Upload download
 on:
   push:
     branches:
-      - /*
+      - pr
   pull_request:
     branches:
       - master
