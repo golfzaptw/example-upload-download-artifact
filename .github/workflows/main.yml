@@ -36,20 +36,9 @@ jobs:
     needs: job1
     steps:
       - uses: actions/checkout@v1
-      - name: Download txt result for job 1
-        uses: actions/download-artifact@v1
-        with:
-          name: text
-      - name: Download report for job 1
-        uses: actions/download-artifact@v1
-        with:
-          name: report
-      - name: Print the final result
-        shell: bash
+      - name: find path
         run: |
-          value=`cat text.txt`
-          echo The result is $value
-      - name: Print the final result
-        shell: bash
-        run: |
-          cd report && ls
+          ls
+          cd ./.github/
+      - name: call yml
+        uses: ./.github/actions/my-action
