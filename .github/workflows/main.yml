@@ -1,9 +1,15 @@
 name: Upload download
 
-on: push
+on:
+  push:
+    branches:
+      - pr
+  pull_request:
+    branches:
+      - master
 
 jobs:
-  job1:
+  setUp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -17,3 +23,33 @@ jobs:
         with:
           name: report
           path: report
+  danger:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: setUp
+    steps:
+      - uses: actions/checkout@v1
+      - name: Download txt result for job 1
+        uses: actions/download-artifact@v1
+        with:
+          name: text
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat text.txt`
+          echo The result is $value
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'ref/heads/master'
+    needs: setUp
+    steps:
+      - uses: actions/checkout@v1
+      - name: Download txt result for job 1
+        uses: actions/download-artifact@v1
+        with:
+          name: text
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat text.txt`
+          echo The result is $value
