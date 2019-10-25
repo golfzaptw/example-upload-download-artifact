@@ -25,7 +25,7 @@ jobs:
       - name: Download txt result for job 1
         uses: actions/download-artifact@v1
         with:
-          name: txt
+          name: text
       - name: Print the final result
         shell: bash
         run: |
@@ -39,7 +39,7 @@ jobs:
       - name: Download txt result for job 1
         uses: actions/download-artifact@v1
         with:
-          name: txt
+          name: text
       - name: Download report for job 1
         uses: actions/download-artifact@v1
         with:
